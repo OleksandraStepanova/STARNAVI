@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url(./font/Montserrat-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url(./font/Montserrat-Bold.ttf);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: "Montserrat-Bold", sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: white;
+  background-color: black;  
+  
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
