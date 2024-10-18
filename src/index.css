@@ -19,10 +19,10 @@
   line-height: 1.5;
 
   color-scheme: light dark;
-  color: white;
+  color: black;
   background-color: black;  
-  background-image: url(./img/background.svg)
-  
+  background-image: url(./img/background.svg);
+  background-size: cover; 
 }
 
 ul {

@@ -1,3 +1,11 @@
 .list{
-    
+    text-align: left;    
+}
+.section{
+    display: flex;
+    justify-content: space-between;
+}
+.item{
+    cursor: pointer;
+    color: white;
 }

@@ -4,6 +4,7 @@ import { getHeroes } from './apiService/heroes'
 import HeroerList from './components/HeroesList/HeroesList'
 import { Heroe } from './App.types';
 import Loader from './components/Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [data, setData] = useState<Heroe[]>([]);
@@ -15,14 +16,13 @@ function App() {
       try {
         setLoader(true);
         const data = await getHeroes();
-        console.log(data);
         setData(prevState => {
           return [...prevState, ...data.results];
         });
         setTotal(data.count);
       } catch (error: unknown) {
         if (error instanceof Error) {
-          // toast.error(error.message);
+          toast.error(error.message);
         }        
       } finally {
         setLoader(false);
@@ -33,11 +33,12 @@ function App() {
   }, [])
   
   return (
-    <section className={css.section}>
-      <h1 className={css.title}>Star Wars heroes</h1>
+    <main className={css.section}>
+      <h1 className={css.title}>Star Wars: heroes</h1>
+      <Toaster />
       {isLoader && <Loader />}   
       {total>0&&<HeroerList value={data}/>}
-    </section>
+    </main>
   )  
 }
 
