@@ -1,43 +1,46 @@
 import { useEffect, useState } from 'react'
 import css from './App.module.css'
-import { getHeroes } from './apiService/heroes'
 import HeroerList from './components/HeroesList/HeroesList'
-import { Heroe } from './App.types';
+import { AppDispatch} from './App.types';
 import Loader from './components/Loader/Loader';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { fetchFilms } from './redux/films/operations';
+import { fetchHeroes } from './redux/heroes/operations';
+import { useSelector } from 'react-redux';
+import { selectHeroes, selectHeroesIsLoading, selectHeroesNext } from './redux/heroes/selectors';
+import { selectShipsNext } from './redux/ships/selectors';
 
 function App() {
-  const [data, setData] = useState<Heroe[]>([]);
-  const [isLoader, setLoader] = useState<boolean>(false);
-  const [total, setTotal] = useState<number>(0);
+  const dispatch: AppDispatch = useDispatch();
+  
+  const data = useSelector(selectHeroes);
+  const nextHeroes = useSelector(selectHeroesNext);
+  const nextShips = useSelector(selectShipsNext);
+  const isLoader = useSelector(selectHeroesIsLoading);
+  const [pageHeroes, setPageHeroes] = useState<number>(1);
+  // const [pageShips, setPageShips] = useState<number>(1);
+
+ 
 
   useEffect(() => {
-    const handleHeroes = async () => {
-      try {
-        setLoader(true);
-        const data = await getHeroes();
-        setData(prevState => {
-          return [...prevState, ...data.results];
-        });
-        setTotal(data.count);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          toast.error(error.message);
-        }        
-      } finally {
-        setLoader(false);
-      }            
-    }
+    dispatch(fetchHeroes(pageHeroes));
+    dispatch(fetchFilms());
+    // dispatch(fetchShips(pageShips)); 
+      
+  }, [dispatch, pageHeroes, nextShips])
 
-    handleHeroes();
-  }, [])
-  
+  const handleMoreButton = () => {
+    if (!nextHeroes) return;
+    setPageHeroes((prev) => prev + 1); 
+  }
   return (
     <main className={css.section}>
       <h1 className={css.title}>Star Wars: heroes</h1>
       <Toaster />
       {isLoader && <Loader />}   
-      {total>0&&<HeroerList value={data}/>}
+      {data && <HeroerList value={data} />}
+      {nextHeroes&&<button className={css.button} onClick={handleMoreButton}>More heroes</button>}
     </main>
   )  
 }

@@ -1,7 +1,7 @@
 
 .section{
     padding: 60px 120px;
-    text-align: center;
+    
 }
 
 .title{
@@ -9,4 +9,19 @@
     font-size: 64px;
     margin: 0;
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.button{
+    background-color: black;
+    border: 1px solid #ffff00;
+    border-radius: 20px;
+    color: #ffff00;
+    padding: 10px;
+    cursor: pointer;
+}
+.button:hover{
+    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    padding: 9px;
+    border: 2px solid #ffff00;
 }
