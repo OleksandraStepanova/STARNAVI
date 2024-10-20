@@ -9,7 +9,7 @@ import { fetchFilms } from './redux/films/operations';
 import { fetchHeroes } from './redux/heroes/operations';
 import { useSelector } from 'react-redux';
 import { selectHeroes, selectHeroesIsLoading, selectHeroesNext } from './redux/heroes/selectors';
-import { selectShipsNext } from './redux/ships/selectors';
+import {  selectShipsNext } from './redux/ships/selectors';
 // import { fetchShips } from './redux/ships/operations';
 
 function App() {
@@ -23,8 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchHeroes(pageHeroes));
-    dispatch(fetchFilms()); 
-    // dispatch(fetchShips())
+    dispatch(fetchFilms());
           
   }, [dispatch, pageHeroes, nextShips])
 
@@ -37,8 +36,8 @@ function App() {
       <h1 className={css.title}>Star Wars: heroes</h1>
       <Toaster />
       {isLoader && <Loader />}   
-      {data && <HeroerList value={data} />}
-      {nextHeroes&&<button className={css.button} onClick={handleMoreButton}>More heroes</button>}
+      {data&&!isLoader && <HeroerList value={data} />}
+      {nextHeroes&&!isLoader&&<button className={css.button} onClick={handleMoreButton}>More heroes</button>}
     </main>
   )  
 }
