@@ -1,9 +1,13 @@
 .list{
     text-align: left;    
-    width: 20vw;
+    width: 80vw;   
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
 }
 .section{
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;
 }
@@ -12,9 +16,41 @@
     color: white;
     padding: 5px;
     display: flex;
-    gap: 12px;
+    gap: 4px;
     align-items: center;
+    font-size: 10px;
 }
 .item:hover{
-    font-size: 18px;
+    color: yellow;
+}
+.item:focus {
+    color: yellow;
+}
+
+.flow{
+    width: 80vw;
+    height: 40vh;
+    clear: black;
+   
+}
+@media (min-width: 1280px) {
+    .section {
+            flex-direction: row;
+        }
+    .list{
+        width: 20vw;
+        flex-direction: column;  
+        margin: 0;    
+    }
+    .item {
+        gap: 12px;
+        font-size: 16px;
+
+    }
+    .flow{
+        height: 60vh;
+    }
+        .item:hover {
+            font-size: 18px;
+        }
 }

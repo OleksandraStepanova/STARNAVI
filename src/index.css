@@ -23,6 +23,8 @@
   background-color: black;  
   background-image: url(./img/background.svg);
   background-size: cover; 
+ background-repeat: no-repeat;
+ height: 100vh;
 }
 
 ul {

@@ -1,0 +1,24 @@
+.wrapper{
+background-color: black;
+color: yellow;
+padding: 10px;
+width: 200px;
+height: 70px;
+font-size: 10px;
+box-shadow: 0 4px 10px rgba(147, 112, 219, 0.3);
+border-radius: 20px;
+}
+
+.text{
+    color: rgb(54, 53, 59);
+}
+
+@media (min-width: 1280px) {
+    .wrapper{
+        width: 420px;
+        height: 120px;
+        font-size: 18px;
+    }
+
+}
+

@@ -50,6 +50,17 @@ const shipsSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload as string;
             })
+            .addCase(fetchShips.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(fetchShips.fulfilled, (state, action: PayloadAction<ApiResponseShips>) => {
+                state.ships = action.payload.results;
+                state.isLoading = false;
+            })
+            .addCase(fetchShips.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload as string;
+            })
     },
 });
 

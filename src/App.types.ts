@@ -12,6 +12,10 @@ export type Heroe = {
     name: string;
     films: number[];
     starships: number[];
+    height: number,
+    mass: number,
+    birth_year: string,
+    gender:'male'|'female',
 }
 
 export type ApiResponseFilms = {
@@ -64,3 +68,4 @@ export interface ShipsState {
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
+

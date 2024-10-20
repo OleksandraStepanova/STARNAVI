@@ -10,6 +10,7 @@ import { fetchHeroes } from './redux/heroes/operations';
 import { useSelector } from 'react-redux';
 import { selectHeroes, selectHeroesIsLoading, selectHeroesNext } from './redux/heroes/selectors';
 import { selectShipsNext } from './redux/ships/selectors';
+// import { fetchShips } from './redux/ships/operations';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -19,15 +20,12 @@ function App() {
   const nextShips = useSelector(selectShipsNext);
   const isLoader = useSelector(selectHeroesIsLoading);
   const [pageHeroes, setPageHeroes] = useState<number>(1);
-  // const [pageShips, setPageShips] = useState<number>(1);
-
- 
 
   useEffect(() => {
     dispatch(fetchHeroes(pageHeroes));
-    dispatch(fetchFilms());
-    // dispatch(fetchShips(pageShips)); 
-      
+    dispatch(fetchFilms()); 
+    // dispatch(fetchShips())
+          
   }, [dispatch, pageHeroes, nextShips])
 
   const handleMoreButton = () => {
