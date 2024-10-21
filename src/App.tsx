@@ -3,12 +3,13 @@ import css from './App.module.css'
 import HeroerList from './components/HeroesList/HeroesList'
 import { AppDispatch} from './App.types';
 import Loader from './components/Loader/Loader';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { fetchFilms } from './redux/films/operations';
 import { fetchHeroes } from './redux/heroes/operations';
 import { useSelector } from 'react-redux';
 import { selectHeroes, selectHeroesIsLoading, selectHeroesNext, selectHeroesPrevious } from './redux/heroes/selectors';
+import { fetchShips } from './redux/ships/operations';
 
 
 function App() {
@@ -19,13 +20,22 @@ function App() {
   const prevHeroes = useSelector(selectHeroesPrevious);
   const isLoader = useSelector(selectHeroesIsLoading);
   const [pageHeroes, setPageHeroes] = useState<number>(1);
+  const [pageShips, setPageShips] = useState<number>(1)
 
   useEffect(() => {
     dispatch(fetchHeroes(pageHeroes));
     dispatch(fetchFilms());
-          
-  }, [dispatch, pageHeroes])
+    dispatch(fetchShips(pageShips)).unwrap().then((value) => {
+      if (value.next) setPageShips(pageShips + 1)
+    }).catch((err) => {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    });
+   
+  }, [dispatch, pageHeroes,pageShips,])
 
+ 
  
 
   const handleMoreButton = () => {

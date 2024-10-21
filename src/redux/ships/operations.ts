@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://sw-api.starnavi.io/";
 
-export const fetchShips = createAsyncThunk < ApiResponseShips , void, {rejectValue:string}>(
+export const fetchShips = createAsyncThunk < ApiResponseShips , number, {rejectValue:string}>(
   "ships/fetchShips",
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     try {
-      const response = await axios.get<ApiResponseShips>(`/starships/?page=1&page=2`);
+      const response = await axios.get<ApiResponseShips>(`/starships/?page=${page}`);
       return response.data;
     } catch (err: unknown) {
         if (err instanceof Error) {

@@ -1,12 +1,10 @@
 import {ReactFlow, Background, Edge,  Node, useNodesState, useEdgesState, NodeTypes} from "@xyflow/react";
-import { AppDispatch, Heroe } from "../../App.types";
+import { Heroe } from "../../App.types";
 import '@xyflow/react/dist/style.css';
 import css from "./HeroesList.module.css"
 import { useSelector } from "react-redux";
 import { selectFilms } from "../../redux/films/selectors";
 import { selectShips } from "../../redux/ships/selectors";
-import { useDispatch } from "react-redux";
-import { fetchShipsById } from "../../redux/ships/operations";
 import CustomNode from "../FlowHeroe/CustomNode";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
@@ -22,7 +20,7 @@ const initialNodes: Node[] = [
     {
         id: '1',
         data: { label: 'Choose your favorite hero' },
-        position: { x: 20, y: 20 },    
+        position: { x: 52, y: 52 },    
         style: {
             backgroundColor: 'black',
             color: 'yellow',
@@ -48,8 +46,9 @@ export default function HeroerList({ value }: HeroesListProps) {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const films = useSelector(selectFilms);
     const ships = useSelector(selectShips); 
-    const dispatch: AppDispatch = useDispatch();   
+     
     const [loading, setLoading] = useState(false);
+    console.log(ships);
     
     
     const addNode = async (item: Heroe) => {
@@ -92,8 +91,7 @@ export default function HeroerList({ value }: HeroesListProps) {
 
             const shipsId: number[] = item.starships;
             const shipsIdMerged = film.starships.filter(ships => shipsId.includes(ships));
-            const shipPromises = shipsIdMerged.map(shipId => dispatch(fetchShipsById(shipId)));
-            await Promise.all(shipPromises);          
+              
          
             const shipsInFilm = ships.filter(ship => shipsIdMerged.includes(ship.id));
                 shipsInFilm.forEach((ship,index) => {
