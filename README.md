@@ -36,6 +36,7 @@ Before you begin, ensure you have the following installed:
 1. Clone this repository:
 
 `git clone https://github.com/OleksandraStepanova/STARNAVI`
+
 `cd star-wars-heroes-app`
 
 2. Install dependencies:
