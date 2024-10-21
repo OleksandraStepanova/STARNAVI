@@ -16,9 +16,9 @@
     color: white;
     padding: 5px;
     display: flex;
-    gap: 4px;
+    gap: 5px;
     align-items: center;
-    font-size: 10px;
+    font-size: 8px;
 }
 .item:hover{
     color: yellow;
@@ -29,7 +29,7 @@
 
 .flow{
     width: 80vw;
-    height: 40vh;
+    height: 52vh;
     clear: black;
    
 }

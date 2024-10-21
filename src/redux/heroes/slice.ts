@@ -7,7 +7,8 @@ const initialState: HeroesState = {
     heroes: [],
     isLoading: false,
     error: null,
-    next:''
+    next: '',
+    previous: '',
 }
 
 
@@ -23,6 +24,7 @@ const heroesSlice = createSlice({
             .addCase(fetchHeroes.fulfilled, (state, action: PayloadAction<ApiResponseHeroes>) => {
                 state.heroes = action.payload.results;
                 state.next = action.payload.next;
+                state.previous = action.payload.previous;
                 state.isLoading = false;
             })
             .addCase(fetchHeroes.rejected, (state, action) => {

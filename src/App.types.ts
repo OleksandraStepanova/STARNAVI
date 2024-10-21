@@ -15,7 +15,7 @@ export type Heroe = {
     height: number,
     mass: number,
     birth_year: string,
-    gender:'male'|'female',
+    gender:'male'|'female'|'hermaphrodite',
 }
 
 export type ApiResponseFilms = {
@@ -49,7 +49,8 @@ export interface HeroesState {
     heroes: Heroe[],
     isLoading: boolean,
     error: string | null,
-    next:string|null,
+    next: string | null,
+    previous: string|null,
 }
 
 export interface FilmsState {
