@@ -22,20 +22,27 @@ function App() {
   const [pageHeroes, setPageHeroes] = useState<number>(1);
   const [pageShips, setPageShips] = useState<number>(1)
 
-  useEffect(() => {
-    dispatch(fetchHeroes(pageHeroes));
-    dispatch(fetchFilms());
-    if (pageHeroes === 1) {
-      dispatch(fetchShips(pageShips)).unwrap().then((value) => {
-      if (value.next) setPageShips(pageShips + 1)
-    }).catch((err) => {
+ useEffect(() => {
+  dispatch(fetchFilms());
+  dispatch(fetchHeroes(pageHeroes)).unwrap().catch((err) => {
+    if (err instanceof Error) {
+      toast.error(err.message);
+    }
+  });
+}, [dispatch, pageHeroes]);
+
+
+useEffect(() => {
+  dispatch(fetchShips(pageShips)).unwrap()
+    .then((value) => {
+      if (value.next) setPageShips(pageShips + 1);
+    })
+    .catch((err) => {
       if (err instanceof Error) {
         toast.error(err.message);
       }
     });
-    }   
-   
-  }, [dispatch, pageHeroes,pageShips,])
+}, [dispatch, pageShips]); 
 
  
  
