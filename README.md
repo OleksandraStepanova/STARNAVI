@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# STARNAVI: Star Wars Heroes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Star Wars Heroes Application built with React, Redux, and React Flow. It fetches and displays a list of Star Wars heroes, ships, and films using an external API. The app supports pagination for heroes and ships, and includes detailed visualizations of hero data using React Flow.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Fetch and Display Heroes:** The app fetches a paginated list of Star Wars heroes from an API and displays them in a user-friendly interface.
+- **Fetch Films:** On initialization, the app fetches and displays information about Star Wars films.
+- **JFetch Ships (On first page load):** The app fetches a list of Star Wars ships when the heroes' page is on the first page.
+- **Detailed Hero Information with React Flow:** For each hero, the app visualizes their associated films and ships in a flow diagram. The hero is the central node, with connections branching to their respective films, and from each film, there are connections to the ships.
+- **Pagination:** Users can navigate between pages of heroes with "Back" and "More Heroes" buttons.
+- **Loader:** A loading spinner is displayed while data is being fetched.
+- **Error Handling:** Errors during API calls are captured and displayed to the user using toast notifications.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React:** The UI is built using React.
+- **Redux:** State management is handled by Redux.
+- **React Redux:** For connecting React components to the Redux store.
+- **Redux Thunk:** For asynchronous actions.
+- **React-Hot-Toast:** For displaying error and success notifications.
+- **React Flow:** Used for visualizing relationships between a hero, their films, and associated ships.
+- **TypeScript:** The project is written in TypeScript to ensure type safety.
 
-- Configure the top-level `parserOptions` property like this:
+# Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Prerequisites
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Before you begin, ensure you have the following installed:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **[Node.js](https://nodejs.org/uk)** (version 14.x or later)
+- **[npm](https://www.npmjs.com/)** (or yarn if you prefer)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Installation
+
+1. Clone this repository:
+
+````git clone https://github.com/OleksandraStepanova/STARNAVI
+```cd star-wars-heroes-app
+2. Install dependencies:
+```npm install
+
+## Running the App
+
+To start the development server:
+```npm run dev
+
+This will run the app in development mode. Open (http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits. You will also see any lint errors in the console.
+
+## Building the App
+
+To build the app for production, run:
+
+```npm run build
+
+This will create an optimized production build in the build folder.
+````
