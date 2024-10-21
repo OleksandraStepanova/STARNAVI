@@ -47,7 +47,6 @@ export default function HeroerList({ value }: HeroesListProps) {
     const films = useSelector(selectFilms);
     const ships = useSelector(selectShips);      
     const [loading, setLoading] = useState(false);
-    console.log(ships);
     
     
     
