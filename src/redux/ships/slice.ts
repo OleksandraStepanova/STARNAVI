@@ -53,7 +53,7 @@ const shipsSlice = createSlice({
             .addCase(fetchShips.pending, state => {
                 state.isLoading = true;
             })
-            .addCase(fetchShips.fulfilled, (state, action: PayloadAction<ApiResponseShips>) => {                
+            .addCase(fetchShips.fulfilled, (state, action: PayloadAction<ApiResponseShips>) => {
                 state.ships.push(...action.payload.results);
                 state.isLoading = false;
             })

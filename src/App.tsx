@@ -25,13 +25,15 @@ function App() {
   useEffect(() => {
     dispatch(fetchHeroes(pageHeroes));
     dispatch(fetchFilms());
-    dispatch(fetchShips(pageShips)).unwrap().then((value) => {
+    if (pageHeroes === 1) {
+      dispatch(fetchShips(pageShips)).unwrap().then((value) => {
       if (value.next) setPageShips(pageShips + 1)
     }).catch((err) => {
       if (err instanceof Error) {
         toast.error(err.message);
       }
     });
+    }   
    
   }, [dispatch, pageHeroes,pageShips,])
 

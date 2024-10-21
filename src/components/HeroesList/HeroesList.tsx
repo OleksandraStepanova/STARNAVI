@@ -45,10 +45,10 @@ export default function HeroerList({ value }: HeroesListProps) {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const films = useSelector(selectFilms);
-    const ships = useSelector(selectShips); 
-     
+    const ships = useSelector(selectShips);      
     const [loading, setLoading] = useState(false);
     console.log(ships);
+    
     
     
     const addNode = async (item: Heroe) => {
