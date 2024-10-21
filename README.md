@@ -35,15 +35,16 @@ Before you begin, ensure you have the following installed:
 
 1. Clone this repository:
 
-````git clone https://github.com/OleksandraStepanova/STARNAVI
-cd star-wars-heroes-app```
+`````git clone https://github.com/OleksandraStepanova/STARNAVI
+cd star-wars-heroes-app````
+
 2. Install dependencies:
-```npm install```
+````npm install````
 
 ## Running the App
 
 To start the development server:
-```npm run dev```
+````npm run dev````
 
 This will run the app in development mode. Open (http://localhost:3000) to view it in the browser.
 
@@ -52,8 +53,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 ## Building the App
 
 To build the app for production, run:
-
-```npm run build```
+````npm run build````
 
 This will create an optimized production build in the build folder.
-````
+`````
