@@ -1,14 +1,18 @@
 import { store } from "./redux/store";
 
 export type ApiResponseHeroes = { 
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: Heroe[];
+    data: ApiResponseHeroesData,   
 }
 
+export type ApiResponseHeroesData = {
+        next: string | null;
+        previous: string | null;
+        results: Heroe[];
+}
+    
+
 export type Heroe = {
-    id: string;
+    id: number;
     name: string;
     films: number[];
     starships: number[];
@@ -19,7 +23,6 @@ export type Heroe = {
 }
 
 export type ApiResponseFilms = {
-    count: number;
     next: string | null;
     previous: string | null;
     results: Film[];
@@ -34,7 +37,6 @@ export type Film = {
 
 
 export type ApiResponseShips = { 
-    count: number;
     next: string | null;
     previous: string | null;
     results: Ship[];
@@ -47,10 +49,10 @@ export type Ship = {
 
 export interface HeroesState {
     heroes: Heroe[],
-    isLoading: boolean,
-    error: string | null,
     next: string | null,
-    previous: string|null,
+    previous: string | null,
+    error: string | null,
+    isLoading: boolean,   
 }
 
 export interface FilmsState {
@@ -65,8 +67,12 @@ export interface ShipsState {
     error: string | null,
     next:string|null,
 }
-
-export type RootState = ReturnType<typeof store.getState>;
+export interface RootState {
+  heroes: HeroesState;
+  films: FilmsState;
+  ships: ShipsState;
+}
+// export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 

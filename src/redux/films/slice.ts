@@ -3,7 +3,7 @@ import { fetchFilms } from "./operations";
 import { ApiResponseFilms, FilmsState } from "../../App.types";
 
 
-const initialState: FilmsState = {
+export const initialState: FilmsState = {
     films: [],
     isLoading: false,
     error: null,

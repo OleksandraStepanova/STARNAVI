@@ -60,3 +60,19 @@ To build the app for production, run:
 `npm run build`
 
 This will create an optimized production build in the build folder.
+
+## Testing with Vitest
+
+This project uses Vitest for unit and integration testing. To run the tests:
+
+1. Run the tests in watch mode:
+
+`npm run test:watch`
+
+This will start Vitest in watch mode, which reruns tests whenever files change.
+
+2. Run all tests once:
+
+`npm run test`
+
+This command will run all the tests once and provide a summary of the results.

@@ -11,28 +11,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.item{
-    cursor: pointer;
-    color: white;
-    padding: 5px;
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    font-size: 8px;
-}
-.item:hover{
-    color: yellow;
-}
-.item:focus {
-    color: yellow;
-}
 
-.flow{
-    width: 80vw;
-    height: 52vh;
-    clear: black;
-   
-}
 @media (min-width: 1280px) {
     .section {
             flex-direction: row;
@@ -42,15 +21,5 @@
         flex-direction: column;  
         margin: 0;    
     }
-    .item {
-        gap: 12px;
-        font-size: 16px;
-
-    }
-    .flow{
-        height: 60vh;
-    }
-        .item:hover {
-            font-size: 18px;
-        }
+   
 }

@@ -1,0 +1,12 @@
+.flow {
+    width: 80vw;
+    height: 52vh;
+    clear: black;
+
+}
+
+@media (min-width: 1280px) {
+    .flow {
+        height: 60vh;
+    }
+}

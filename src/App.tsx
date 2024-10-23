@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
-import css from './App.module.css'
 import HeroerList from './components/HeroesList/HeroesList'
-import { AppDispatch} from './App.types';
 import Loader from './components/Loader/Loader';
 import toast, { Toaster } from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchFilms } from './redux/films/operations';
 import { fetchHeroes } from './redux/heroes/operations';
+import { fetchShips } from './redux/ships/operations';
 import { useSelector } from 'react-redux';
 import { selectHeroes, selectHeroesIsLoading, selectHeroesNext, selectHeroesPrevious } from './redux/heroes/selectors';
-import { fetchShips } from './redux/ships/operations';
+import { AppDispatch} from './App.types';
+import css from './App.module.css'
 
 
 function App() {

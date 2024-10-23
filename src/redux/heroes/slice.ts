@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchHeroes } from "./operations";
-import { ApiResponseHeroes, HeroesState } from "../../App.types";
+import {ApiResponseHeroesData, HeroesState } from "../../App.types";
 
 
-const initialState: HeroesState = {
+export const initialState: HeroesState = {
     heroes: [],
     isLoading: false,
     error: null,
-    next: '',
-    previous: '',
+    next: null,
+    previous: null,
 }
 
 
@@ -20,8 +20,9 @@ const heroesSlice = createSlice({
         builder       
             .addCase(fetchHeroes.pending, state => {
                 state.isLoading = true;
+                state.error = null;
             })
-            .addCase(fetchHeroes.fulfilled, (state, action: PayloadAction<ApiResponseHeroes>) => {
+            .addCase(fetchHeroes.fulfilled, (state, action: PayloadAction<ApiResponseHeroesData>) => {
                 state.heroes = action.payload.results;
                 state.next = action.payload.next;
                 state.previous = action.payload.previous;
@@ -35,3 +36,4 @@ const heroesSlice = createSlice({
 });
 
 export const heroesReducer = heroesSlice.reducer;
+
