@@ -11,9 +11,9 @@ export const fetchHeroes = createAsyncThunk < ApiResponseHeroesData,number,{reje
     try {
       const response = await axios.get<ApiResponseHeroesData>(`/people/?page=${page}`);
       return response.data;
-    } catch (err: unknown) {
+    } catch (err) {
         if (err instanceof Error) {
-          toast.error(err.message);
+          toast.error('Something went wrong');
         }
         return rejectWithValue('Something went wrong')  
     }

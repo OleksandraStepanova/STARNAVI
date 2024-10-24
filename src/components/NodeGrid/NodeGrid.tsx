@@ -12,7 +12,7 @@ type NodeGridProps = {
 
 export default function NodeGrid({ nodes, edges, onNodesChange, onEdgesChange, nodeTypes }: NodeGridProps) {
   return (
-    <div className={css.flow}>
+    <div className={css.flow} data-testid="node-grid">
       <ReactFlow
         nodes={nodes}
         edges={edges}

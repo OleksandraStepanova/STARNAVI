@@ -13,7 +13,7 @@ export const fetchShips = createAsyncThunk < ApiResponseShips , number, {rejectV
       return response.data;
     } catch (err: unknown) {
         if (err instanceof Error) {
-          toast.error(err.message);
+          toast.error('Something went wrong');
         }
         return rejectWithValue('Something went wrong')    
     }
@@ -28,7 +28,7 @@ export const fetchShipsById = createAsyncThunk < Ship , number, {rejectValue:str
       return response.data;
     } catch (err: unknown) {
         if (err instanceof Error) {
-          toast.error(err.message);
+          toast.error('Something went wrong');
         }
         return rejectWithValue('Something went wrong')    
     }

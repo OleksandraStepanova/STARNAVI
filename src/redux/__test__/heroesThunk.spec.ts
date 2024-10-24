@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import axios from 'axios';
-import { fetchHeroes } from '../redux/heroes/operations';
-import { heroesReducer } from '../redux/heroes/slice';
+import { fetchHeroes } from '../heroes/operations';
+import { heroesReducer } from '../heroes/slice';
 import { configureStore } from '@reduxjs/toolkit';
 
 vi.mock('axios'); 

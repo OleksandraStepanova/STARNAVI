@@ -13,7 +13,7 @@ export const fetchFilms = createAsyncThunk < ApiResponseFilms, void,{rejectValue
       return response.data;
     } catch (err: unknown) {
         if (err instanceof Error) {
-          toast.error(err.message);
+          toast.error('Something went wrong');
         }
         return rejectWithValue('Something went wrong')    
     }

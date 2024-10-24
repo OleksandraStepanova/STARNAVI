@@ -1,20 +1,18 @@
 import HeroeListItem from "../HeroeListItem/HeroeListItem";
 import NodeGrid from "../NodeGrid/NodeGrid";
 import Loader from "../Loader/Loader";
-import CustomNode from "../FlowHeroe/CustomNode";
+import CustomNode from "../CustomNode/CustomNode";
+import ErrorBoundary from "../ErrorBoundery/ErrorBoundery";
 import { Edge, Node, useNodesState, useEdgesState, NodeTypes } from "@xyflow/react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectFilms } from "../../redux/films/selectors";
-import { selectShips } from "../../redux/ships/selectors";
-import toast from "react-hot-toast";
+import { selectFilms, selectFilmsIsLoading } from "../../redux/films/selectors";
+import { selectShips, selectShipsIsLoading } from "../../redux/ships/selectors";
 import { gridPosition } from "../../utils/gridPositon";
 import { Heroe } from "../../App.types";
 import css from "./HeroesList.module.css"
+import { selectHeroes } from "../../redux/heroes/selectors";
 
-type HeroesListProps = {
-    value: Heroe[];    
-}
+
 const nodeTypes: NodeTypes = {
     custom: CustomNode,
 } 
@@ -37,12 +35,14 @@ const initialNodes: Node[] = [
 
 const initialEdges: Edge[] = [];
 
-export default function HeroerList({ value }: HeroesListProps) {
+export default function HeroerList() {
+    const value = useSelector(selectHeroes);
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const films = useSelector(selectFilms);
-    const ships = useSelector(selectShips);      
-    const [loading, setLoading] = useState(false);     
+    const ships = useSelector(selectShips);   
+    const loadingFilms = useSelector(selectFilmsIsLoading);
+    const loadingShips = useSelector(selectShipsIsLoading);
     
     const addNode = (item: Heroe) => {
         const heroNodeId = `heroe-${item.id+Math.random()}`;
@@ -59,10 +59,8 @@ export default function HeroerList({ value }: HeroesListProps) {
 
         const filmsID: number[] = item.films;
         const selectedFilms = films.filter(film => filmsID.includes(film.id));
-        setLoading(true);   
 
-        try {
-            selectedFilms.forEach((film,index )=> {
+        selectedFilms.forEach((film,index )=> {
                 const filmNodeId = `film-${film.id + Math.random()}`;
                 const filmPosition = gridPosition(index, 3, 200, 100, 200);
                 const filmNode: Node = {
@@ -106,29 +104,24 @@ export default function HeroerList({ value }: HeroesListProps) {
                         setEdges(prevEdges => [...prevEdges, { id: `e-${filmNodeId}-${shipNodeId}`, source: filmNodeId, target: shipNodeId }]);                
                     })
                 }               
-            });
-        } catch (err:unknown) {
-            if (err instanceof Error) {
-          toast.error(err.message);
-        }
-        }finally {
-            setLoading(false);
-        }              
+            });             
     }
 
     return (
-        <section className={css.section}>
+        <section className={css.section} data-testid="heroes-list">
+            {(loadingFilms||loadingShips) && <Loader />}
             <ul className={css.list}>
                 {value.map((item: Heroe) => (<HeroeListItem key={item.id} item={item} onClick={addNode} />))}
-            </ul>
-            {loading && <Loader/>}
-            <NodeGrid
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                nodeTypes={nodeTypes}
-            />
+            </ul>            
+            {(!loadingFilms&&!loadingShips)&&<ErrorBoundary>
+                <NodeGrid
+                    nodes={nodes}
+                    edges={edges}
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
+                    nodeTypes={nodeTypes}
+                />
+            </ErrorBoundary>}
         </section>
     )
 }
